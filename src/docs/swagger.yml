@@ -1,0 +1,841 @@
+openapi: 3.0.1
+info:
+    title: Template for nodejs
+    description: description
+    termsOfService: https://localhost:3000/terms
+    contact:
+        email: example@email.com
+    license:
+        name: Apache 2.0
+        url: http://www.apache.org/licenses/LICENSE-2.0.html
+    version: 1.0.0
+externalDocs:
+    description: Find out more about Swagger
+    url: http://swagger.io
+servers:
+    - url: http://localhost:3000/
+tags:
+    - name: Section
+      description: information about Section
+paths:
+    /Section:
+        post:
+            tags:
+                - Section
+            summary: "add Section"
+            description: ""
+            operationId: getstarted
+            consumes:
+            - "application/json"
+            - "application/xml"
+            produces:
+            - "application/xml"
+            - "application/json"
+            parameters:
+            -   in: "body"
+                name: "body"
+                description: "Section object that needs to be added to the database"
+                required: true
+                schema:
+                    $ref: "#/definitions/Section"
+            responses:
+                200:
+                    description: Operation unsuccessfull
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: 'true'
+                                    message:
+                                        type: string
+                                        example: Something went wrong!
+                                    payload:
+                                        type: object
+                                        properties: {}
+                                        example: {}
+                                
+                201:
+                    description: Operation Successfull, resource created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Section'
+                400:
+                    description: Invalid input
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiErrorResponse'
+        get:
+            tags:
+                - Section
+            summary: Get all sections
+            description: this route gives you information about the all the sections
+            operationId: getstarted
+            responses:
+                200:
+                    description: Operation unsuccessfull
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: 'true'
+                                    message:
+                                        type: string
+                                        example: Something went wrong!
+                                    payload:
+                                        type: object
+                                        properties: {}
+                                        example: {}
+                201:
+                    description: Operation Successfull, resource created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Section'
+                400:
+                    description: Invalid input
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiErrorResponse'
+    /Section/{SectionId}:
+            get:
+                tags:
+                - Section
+                summary: "get Section by Id"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   name: "SectionId"
+                    in: "path"
+                    description: "ID of Section to return"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                responses:
+                    200:
+                        description: unsuccessful operation
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    201:
+                        description: successful operation
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/Section'
+                    401:
+                        description: Invalid ID supplied
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Invalid ID supplied
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    404:
+                        description: Section not found
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Section not found
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+    /Section/{SectionId}/SubSection/{SubSectionId}:
+            post:
+                tags:
+                - Section
+                summary: "Add new SubSection"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   name: "SectionId"
+                    in: "path"
+                    description: "ID of Section in which new subsection is created"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                -   name: "SubSectionId"
+                    in: "path"
+                    description: "ID of SubSection to create"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                responses:
+                    200:
+                        description: unsuccessful operation
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    201:
+                        description: successful operation
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/Section'
+                    401:
+                        description: Invalid ID supplied
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Invalid ID supplied
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+    
+    /SubSection:
+            post:
+                tags:
+                    - SubSection
+                summary: "create new SubSection"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   in: "body"
+                    name: "body"
+                    description: "SubSection object that needs to be added to the database"
+                    required: true
+                    schema:
+                        $ref: "#/definitions/SubSection"
+                responses:
+                    200:
+                        description: Operation unsuccessfull
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                                    
+                    201:
+                        description: Operation Successfull, resource created
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/SubSection'
+                    400:
+                        description: Invalid input
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/ApiErrorResponse'
+    /SubSection/{SubSectionId}:
+            get:
+                tags:
+                - SubSection
+                summary: "get SubSection by Id"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   name: "SectionId"
+                    in: "path"
+                    description: "ID of SubSection to return"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                responses:
+                    200:
+                        description: unsuccessful operation
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    201:
+                        description: successful operation
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/SubSection'
+                    401:
+                        description: Invalid ID supplied
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Invalid ID supplied
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    404:
+                        description: SubSection not found
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: SubSection not found
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+    
+    /SubSection/{SubSectionId}/Article/{ArticleId}:
+            post:
+                tags:
+                - SubSection
+                summary: "Add new Article in Subsection"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   name: "SubSectionId"
+                    in: "path"
+                    description: "ID of Section in which new subsection is created"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                -   name: "Article Id"
+                    in: "path"
+                    description: "ID of Article to create"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                responses:
+                    200:
+                        description: unsuccessful operation
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    201:
+                        description: successful operation
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/SubSection'
+                    401:
+                        description: Invalid ID supplied
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Invalid ID supplied
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+
+    /Article:
+            post:
+                tags:
+                    - Article
+                summary: "create new Article"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   in: "body"
+                    name: "body"
+                    description: "Article object that needs to be added to the database"
+                    required: true
+                    schema:
+                        $ref: "#/definitions/Article"
+                responses:
+                    200:
+                        description: Operation unsuccessfull
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                                    
+                    201:
+                        description: Operation Successfull, resource created
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/Article'
+                    400:
+                        description: Invalid input
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/ApiErrorResponse'
+    /Article/{ArticleId}:
+            get:
+                tags:
+                - Article
+                summary: "get Article by Id"
+                description: ""
+                operationId: getstarted
+                consumes:
+                - "application/json"
+                - "application/xml"
+                produces:
+                - "application/xml"
+                - "application/json"
+                parameters:
+                -   name: "SectionId"
+                    in: "path"
+                    description: "ID of Article to return"
+                    required: true
+                    type: "integer"
+                    format: "int64"
+                responses:
+                    200:
+                        description: unsuccessful operation
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Something went wrong!
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    201:
+                        description: successful operation
+                        content:
+                            application/json:
+                                schema:
+                                    $ref: '#/components/schemas/Article'
+                    401:
+                        description: Invalid ID supplied
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: Invalid ID supplied
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                    404:
+                        description: SubSection not found
+                        content:
+                            application/json:
+                                schema:
+                                    type: object
+                                    properties:
+                                        error:
+                                            type: string
+                                            example: 'true'
+                                        message:
+                                            type: string
+                                            example: SubSection not found
+                                        payload:
+                                            type: object
+                                            properties: {}
+                                            example: {}
+                        
+    /Published:
+        post:
+            tags:
+                - Published
+            summary: "publish status"
+            description: ""
+            operationId: getstarted
+            consumes:
+            - "application/json"
+            - "application/xml"
+            produces:
+            - "application/xml"
+            - "application/json"
+            parameters:
+            -   in: "body"
+                name: "body"
+                description: "Section object that needs to be added to the database"
+                required: true
+                schema:
+                    $ref: "#/definitions/Published"
+            responses:
+                200:
+                    description: Operation unsuccessfull
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: 'true'
+                                    message:
+                                        type: string
+                                        example: Something went wrong!
+                                    payload:
+                                        type: object
+                                        properties: {}
+                                        example: {}
+                                
+                201:
+                    description: Operation Successfull, resource created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Published'
+                400:
+                    description: Invalid input
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiErrorResponse'
+        get:
+            tags:
+                - Published
+            summary: Get all Published Items category wise.
+            description: Get all Published Items category wise.
+            operationId: getstarted
+            responses:
+                200:
+                    description: Operation unsuccessfull
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    error:
+                                        type: string
+                                        example: 'true'
+                                    message:
+                                        type: string
+                                        example: Something went wrong!
+                                    payload:
+                                        type: object
+                                        properties: {}
+                                        example: {}
+                201:
+                    description: Operation Successfull, resource created
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Published'
+                400:
+                    description: Invalid input
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/ApiErrorResponse'
+                
+components:
+    schemas:
+        Published:
+            type: object
+            properties:
+                Section: 
+                    type: object
+                    properties:
+                        id:
+                            type: boolean
+                    
+                SubSection: 
+                    type: object
+                    properties:
+                        id:
+                            type: boolean
+                
+                Article: 
+                    type: object
+                    properties:
+                        id:
+                            type: boolean
+                
+        Section:
+            properties:
+                topic_name: 
+                    type: string
+                    example: "Section Name"
+                description: 
+                    type: string
+                    example: "description"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+                published:
+                    type: boolean
+                    example: false
+                Last_Edited:
+                    type: string
+                    example: "Today, 10:00AM"
+                subtopic_content: 
+                    type: array
+                    example: ["Subtopic unique ID 1","Subtopic unique ID 2","Subtopic unique ID 3"]
+
+
+        SubSection:
+            properties:
+                topic_name: 
+                    type: string
+                    example: "SubSection Name"
+                description: 
+                    type: string
+                    example: "description"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+                published:
+                    type: boolean
+                    example: false
+                Last_Edited:
+                    type: string
+                    example: "Today, 10:00AM"
+                Articles: 
+                    type: array
+                    example: ["Articles unique ID 1","Articles unique ID 2","Articles unique ID 3"]
+        
+        Article:
+            properties:
+                article_name: 
+                    type: string
+                    example: "Article Name"
+                content: 
+                    type: string
+                    example: "Article Content"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+                Headers: 
+                    type: array
+                    example: ["Header 1","Header 2","Header 3"]
+
+        ApiErrorResponse:
+            type: object
+            properties:
+                error:
+                    type: boolean
+                    example: true
+                message:
+                    type: string
+                    example: Your entries are not valid!
+                payload:
+                    type: object
+                    properties: {}
+                    example: {}
+        ApiSuccessResponse:
+            type: object
+            properties:
+                error:
+                    type: boolean
+                    example: false
+                message:
+                    type: string
+                    example: Your account information was updated successfully!
+                payload:
+                    type: object
+                    properties: {}
+                    example: '#/definations/User'
+    securitySchemes:
+        petstore_auth:
+            type: oauth2
+            flows:
+                implicit:
+                    authorizationUrl: http://petstore.swagger.io/oauth/dialog
+                    scopes:
+                        write:pets: modify pets in your account
+                        read:pets: read your pets
+        api_key:
+            type: apiKey
+            name: api_key
+            in: header
+
+definitions: 
+    Section:
+        type: object
+        properties: 
+                topic_name: 
+                    type: string
+                    example: "Section Name"
+                description: 
+                    type: string
+                    example: "description"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+    SubSection:
+        type: object
+        properties: 
+                topic_name: 
+                    type: string
+                    example: "SubSection Name"
+                description: 
+                    type: string
+                    example: "description"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+    
+    Article:
+        type: object
+        properties: 
+                article_name: 
+                    type: string
+                    example: "Article Name"
+                content: 
+                    type: string
+                    example: "Article content"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+    
+
+    Published:
+        type: object
+        properties: 
+                Category: 
+                    type: string
+                    example: "Subsection"
+                uid:
+                    type: string
+                    example: "2pxVkkSkI"
+                
+                        
